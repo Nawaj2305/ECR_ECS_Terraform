@@ -39,7 +39,7 @@ pipeline {
 
         stage('Terraform Apply') {
             steps {
-                sh 'terraform apply -y'
+                sh 'terraform apply'
             }
         }
     }
