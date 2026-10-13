@@ -45,7 +45,6 @@ pipeline {
         stage('Deploy To ECR') {
             steps {
                         sh """
-                            cd src
                             aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 085831229262.dkr.ecr.us-east-1.amazonaws.com
                             docker tag my-ecs-app:latest 085831229262.dkr.ecr.ap-south-1.amazonaws.com/my-ecs-app:latest
                             docker push 085831229262.dkr.ecr.ap-south-1.amazonaws.com/my-ecs-app:latest
