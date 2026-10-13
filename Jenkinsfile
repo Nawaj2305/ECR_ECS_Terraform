@@ -3,15 +3,11 @@ pipeline {
     agent any
 
     environment {
-        AWS_DEFAULT_REGION = 'ap-south-1'
+        AWS_DEFAULT_REGION = 'us-east-1'
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
-            }
-        }
+       
 
         stage('Terraform Version') {
             steps {
@@ -45,10 +41,10 @@ pipeline {
         stage('Deploy To ECR') {
             steps {
                         sh """
-                            aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 085831229262.dkr.ecr.us-east-1.amazonaws.com
-                            docker tag my-ecs-app:latest 085831229262.dkr.ecr.ap-south-1.amazonaws.com/my-ecs-app:latest
-                            docker push 085831229262.dkr.ecr.ap-south-1.amazonaws.com/my-ecs-app:latest
-                            aws ecr list-images --repository-name my-ecs-app --region ap-south-1
+                            aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 085831229262.dkr.ecr.us-east-1.amazonaws.com
+                            docker tag my-ecs-app:latest 085831229262.dkr.ecr.us-east-1.amazonaws.com/my-ecs-app:latest
+                            docker push 085831229262.dkr.ecr.us-east-1.amazonaws.com/my-ecs-app:latest
+                            aws ecr list-images --repository-name my-ecs-app --region us-east-1
                         """
                     }
                 }
